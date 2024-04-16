@@ -9,8 +9,10 @@ type UserInterface interface {
 
 type ProductInterface interface {
 	Create(product *entity.Product) error
-	FindAll(page, limit int, sort string) ([]*entity.Product, error)
-	FindById(id string) (*entity.Product, error)
+	FindAll(page, limit int, sort string) ([]entity.Product, error)
+	FindByID(id string) (*entity.Product, error)
 	Update(product *entity.Product) error
 	Delete(id string) error
 }
+
+//https://github.com/devfullcycle/goexpert/blob/main/9-APIs/internal/infra/database/interfaces.go

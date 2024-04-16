@@ -32,6 +32,8 @@ func (p *Product) FindAll(page, limit int, sort string) ([]entity.Product, error
 	return products, err
 }
 
+//https://github.com/devfullcycle/goexpert/blob/main/9-APIs/internal/infra/database/interfaces.go
+
 func (p *Product) FindByID(id string) (*entity.Product, error) {
 	var product entity.Product
 	err := p.DB.First(&product, "id = ?", id).Error
