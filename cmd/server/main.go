@@ -4,6 +4,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
 	"github.com/wandermaia/pos-golang-apis/configs"
 	"github.com/wandermaia/pos-golang-apis/internal/entity"
 	"github.com/wandermaia/pos-golang-apis/internal/infra/database"
@@ -26,10 +28,17 @@ func main() {
 
 	productDB := database.NewProduct(db)
 	productHandler := handlers.NewProductHandler(productDB)
-	http.HandleFunc("/products", productHandler.CreateProduct)
+
+	r := chi.NewRouter()
+	r.Use(middleware.Logger)
+	r.Post("/products", productHandler.CreateProduct)
+	r.Get("/products", productHandler.GetProducts)
+	r.Get("/products/{id}", productHandler.GetProduct)
+	r.Put("/products/{id}", productHandler.UpdateProduct)
+	r.Delete("/products/{id}", productHandler.DeleteProduct)
 
 	log.Println("Servidor iniciado!")
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":8000", r)
 
 }
 
