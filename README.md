@@ -1,5 +1,6 @@
 # pos-golang-apis
-repositório para os exercícios de criação das apis em golang da pós.
+
+Repositório para os exercícios de criação das apis em golang da pós.
 
 Nos itens a seguir, serão inseridas anotações e comentários anotados durante as aulas.
 
@@ -7,17 +8,17 @@ Nos itens a seguir, serão inseridas anotações e comentários anotados durante
 ## Anotações Gerais
 
 Para carregar as configurações, vamos utilizar o pacote viper. Ele é muito famoso na comunidade.
-github.com/spf13/viper
 
-Geração de UUID será com a biblioteca do google (github.com/google/uuid).
+Geração de UUID será com a biblioteca uuid do google.
 
 ## JWT
 
-Utilizamos o módulo de JWT que faz parte do midleware do chi (github.com/go-chi/jwtauth).
+Utilizamos o módulo de JWT que faz parte do midleware do chi. O token é dividido em três partes, que são separados por ".":
 
-O token é dividido em três partes, que são separados por ".":
 - A primeira parte define qual algoritmo está sendo utilizado. É o "header" do token.
+
 - A segunda parte são os dados que você está passando (payload).
+
 - A terceira e última parte é a assinatura do token. Ela pode ser baseada em chave ou certificado.
 
 ## Bancos de dados
@@ -57,7 +58,7 @@ As senhas serão criptografadas utilizando o pacote golang.org/x/crypto/bcrypt
 
 A importância de fazer esses testes é que estamos implementando uma api e, caso dê um erro lá no final, não saberemos se o erro é na implementação da API ou na entidade. Dessa forma, quanto mais pudermos testar agora, reduzimos os riscos lá na frente.
 
-Para executar todos os testes, basta ir na raiz do projeto e executar
+Para executar todos os testes, basta ir na raiz do projeto e executar o seguinte comando:
 
 ```bash
 
@@ -72,7 +73,7 @@ ok  	github.com/wandermaia/pos-golang-apis/internal/infra/database	0.131s
 wander@bsnote283:~/repos/CURSO-GO/07apis/pos-golang-apis$ 
 
 ```
-onde os três pontos indicam que ele vai pesquisar recursivamente nas subpastas a procura de arquivos de teste.
+Onde os três pontos indicam que ele vai pesquisar recursivamente nas subpastas a procura de arquivos de teste.
 
 Para os testes de URL, utilizamos uma extensão do vscode chamada "REST Client".
 
@@ -87,7 +88,7 @@ Midlewares importantes
 
 ## Documentação
 
-Para documentação, utilizaremos o openApi, através da biblioteca do swaggo (https://github.com/swaggo/swag).
+Para documentação, utilizaremos o openApi, através da biblioteca do swaggo.
 
 Essa biblioteca converte as Go para o Swagger Documentation 2.0.
 
@@ -100,9 +101,10 @@ go install github.com/swaggo/swag/cmd/swag@latest
 ```
 > **OBSERVAÇÃO:**
 >
-> Os binários instalados pelo Go ficam na pasta bin do seu GOPATH. Por isso, adicionar no path para que ele funcione de qualquer local
+> Os binários instalados pelo Go ficam na pasta bin do seu GOPATH. Por isso, é necessário adicionar no path para que ele funcione de qualquer local
 > 
 > O export pode ser criado no arquivo .bashrc conforme abaixo:
+>
 >```bash
 > export GOPATH=$HOME/go
 > export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
@@ -111,23 +113,37 @@ go install github.com/swaggo/swag/cmd/swag@latest
 
 Ao executar o comando `swag init -g cmd/server/main.go` na raiz do projeto, será gerada uma pasta chamada *docs*, contendo três arquivos: docs.go, que contém o código para abrir o swagger e swagger.json e swagger.yaml, onde temos a documentação do padrão api.
 
-O pacote swag já traz alguns plugins para trabalhar com os principais frameworks, incluindo aí o go-chi.
+O pacote swag já traz alguns plugins para trabalhar com os principais frameworks, incluindo o go-chi.
 
 ## Referências
+
+
+Viper
+
+https://github.com/spf13/viper
+
+Google uuid
+
+https://github.com/google/uuid
+
+Go bcrypt
+
+https://pkg.go.dev/golang.org/x/crypto/bcrypt
+
+Gorm
+
+https://gorm.io/index.html
 
 jwt io
 
 https://jwt.io/
-
-Repositório do módulo do curso
-
-https://github.com/devfullcycle/goexpert/blob/main/9-APIs/internal/infra/database/interfaces.go
 
 Golang chi
 
 https://github.com/go-chi/chi
 
 Swag
+
 https://github.com/swaggo/swag
 
 OPENAPI INITIATIVE
