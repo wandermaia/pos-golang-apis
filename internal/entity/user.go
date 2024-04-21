@@ -34,6 +34,7 @@ func (u *User) ValidatePassword(password string) bool {
 }
 
 /*
+
 As entidades ajudam a manter a consistência da aplicação.
 As regras de negócios ficam nas entidades.
 As senhas serão criptografadas utilizando o pacote golang.org/x/crypto/bcrypt
